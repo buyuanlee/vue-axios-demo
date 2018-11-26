@@ -68,7 +68,32 @@ methods: {
       this.$http.get('https://cnodejs.org/api/v1/topics?page=1&limit=10')
     }
     ```
-
-
+### Axios中的post请求
+#### post传递数据2种格式
+1. form-data
+2. x-www-form-urlencoded      
+#### qs插件
+##### 在axios中，post请求接收的参数必须是form-data，为解决这一问题可以使用qs插件的qs.stringify方法;
+##### 安装方法：
+```shell
+npm install qs
+```
+##### **demo**
+```javascript
+postData(){
+    //params:指定参数。page和limit为官方的api
+    this.$http.post(url, qs.stringify({
+        page: 1,
+        limit: 10
+    }))
+      .then((res) => {
+        this.items = res.data.data
+        console.log(res)
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
+  }
+```
 
 
